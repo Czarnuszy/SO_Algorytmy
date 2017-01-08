@@ -1,0 +1,3 @@
+import FCFS
+
+FCFS.Fcfs()
