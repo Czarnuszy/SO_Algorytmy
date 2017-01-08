@@ -12,8 +12,6 @@ def Fcfs():
         wtime += process_queue[i][1]
         exetime += process_queue[i][1]
         process_queue[i].append(exetime)
-
-
         print('')
 
     print('ProcessName:\tBurstTime:\tWait time:\tExecution time:')
