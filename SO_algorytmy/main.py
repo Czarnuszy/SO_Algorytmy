@@ -10,7 +10,7 @@ def menu():
     print('4. End')
     z = int(input('(1-4):'))
     if z == 1:
-        FCFS.fcfsClosedbase()
+        FCFS.fcfs()
     elif z == 2:
         SJF.sjf()
     elif z == 3:

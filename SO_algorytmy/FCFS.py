@@ -1,9 +1,6 @@
 #!/usr/bin/env python
-import random
-import time
 
-
-def fcfsClosedbase():
+def fcfs():
     process_queue = []
     wtime = 0
     exetime = 0
@@ -29,11 +26,3 @@ def fcfsClosedbase():
 
     return 0
 
-
-'''def fcfsOpenbase():
-    proces_queue=[]
-    wtime = 0
-    exectime = 0
-    n = 0
-
-    return 0'''
