@@ -1,5 +1,9 @@
 #!/usr/bin/env python
-def Fcfs():
+import random
+import time
+
+
+def fcfsClosedbase():
     process_queue = []
     wtime = 0
     exetime = 0
@@ -19,8 +23,17 @@ def Fcfs():
         print(process_queue[i][0], '\t\t\t\t', process_queue[i][1], '\t\t\t\t', process_queue[i][2], '\t\t\t\t', process_queue[i][3])
 
     print('Total waiting time: ', process_queue[n-1][2])
-    print('Average waiting time: ', (process_queue[n-1][2] / n))
+    print('Average waiting time: ', round((process_queue[n-1][2] / n), 2))
     print('Total execution time: ', exetime)
-    print('Average execution time: ', exetime / n)
+    print('Average execution time: ', round((exetime / n), 2))
 
     return 0
+
+
+'''def fcfsOpenbase():
+    proces_queue=[]
+    wtime = 0
+    exectime = 0
+    n = 0
+
+    return 0'''
