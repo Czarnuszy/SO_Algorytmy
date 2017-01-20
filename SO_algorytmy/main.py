@@ -1,6 +1,5 @@
 import sys,FCFS,SJF,RoundRobin,Priority
-#FCFS.fcfsClosedbase()
-#FCFS.fcfsOpenbase()
+
 
 def menu():
     print("\nWhat algorithm you want to launch?")
@@ -11,4 +10,14 @@ def menu():
     z = int(input('(1-4):'))
     if z == 1:
         FCFS.start()
+    elif z == 2:
+        SJF.start()
+    elif z == 3:
+        Priority.start()
+    elif z == 4:
+        sys.exit(0)
+    else:
+        print("Wrong input")
+        menu()
 menu()
+

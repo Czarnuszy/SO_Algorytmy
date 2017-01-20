@@ -1,54 +1,20 @@
 #!/usr/bin/env python
-import Print, time, random
 
-class Process:
-    def __init__(self, index, arrival, burst):
-        self.index = index
-        self.arrival = arrival
-        self.burst = burst
-
-    def symulate(self, s_time,w_time):
-        print("\nProcess index: ", self.index)
-        print('Arrival time: ', self.arrival)
-        print('Process start time: ', s_time)
-        print('Process wait time: ', w_time)
-        time.sleep(1)
-        Print.process_print(self.burst)
-
-
-def processInput(n, queue):
-    n = int(input('Insert number of processes to simulate:'))
-    for i in range(n):
-        ind = input("\nInsert process index: ")
-        arr = int(input('Insert process arrival time: '))
-        bur = int(input('Insert process burst time: '))
-        process = Process(ind, arr, bur)
-        queue.append(process)
-    return n
-
-
-def processRandomize(queue):
-    n = int(input('Insert number of processes to simulate:'))
-    for i in range(n):
-        ind = random.randint(0, n)
-        arr = random.randint(0, 15)
-        bur = random.randint(1, 10)
-        process = Process(ind, arr, bur)
-        queue.append(process)
-    return n
+import time
+from ProcessClass import ReadData, processRandomize
 
 
 
 def start():
     print("\n")
     print('1. Generate random processes.')
-    print('2. Insert processes data manually.')
+    print('2. Read data from file.')
     choice = int(input("(1-2): "))
     process_queue = []
     if choice == 1:
         processRandomize(process_queue)
     elif choice == 2:
-        processInput(process_queue)
+        ReadData(process_queue)
     else:
         print("Wrong input")
         start()
@@ -68,6 +34,7 @@ def start():
         process_queue[i].symulate(start_time, wait_time)
         time.sleep(1)
         start_time += process_queue[i].burst
+
     print("Total wait time= ", average_wait)
     print("Average process wait time: ", float(average_wait/m))
 
