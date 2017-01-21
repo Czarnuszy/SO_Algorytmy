@@ -1,16 +1,18 @@
-import time
-import random
-import Print
-
-
 class Process:
-    def __init__(self, index, arrival, burst):
+    def __init__(self, index, arrival, burst, priority, wait_time=0,
+                 s_time=0, end_time=0):
         self.index = index
         self.arrival = arrival
         self.burst = burst
+        self.priority = priority
+        self.w_time = wait_time
+        self.s_time = s_time
+        self.e_time = end_time
 
-    def symulate(self, w_time):
-       Print.process_grid_print(self.index, self.arrival, self.burst, w_time)
+
+    def print(self):
+        print(self.index + "\t" + '|   ' * (self.arrival-1) + "| - "
+              * self.w_time + "| # " * self.burst)
 
 def ReadData(queue):
     with open("Data/Data1.csv") as file:
@@ -19,15 +21,6 @@ def ReadData(queue):
         ind = ("P"+str(tab[0][i]))
         arr = int(tab[1][i])
         bur = int(tab[2][i])
-        process = Process(ind, arr, bur)
+        pri = int(tab[3][i])
+        process = Process(ind, arr, bur, pri)
         queue.append(process)
-
-def processRandomize(queue):
-    n = int(input('Insert number of processes to simulate:'))
-    for i in range(n):
-        ind = ("P"+str(i))
-        arr = random.randint(0, 15)
-        bur = random.randint(1, 10)
-        process = Process(ind, arr, bur)
-        queue.append(process)
-    return n
