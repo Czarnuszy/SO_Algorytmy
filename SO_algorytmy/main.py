@@ -19,5 +19,6 @@ def menu():
     else:
         print("Wrong input")
         menu()
-menu()
+while(True):
+    menu()
 

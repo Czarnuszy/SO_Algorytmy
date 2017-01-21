@@ -1,15 +1,10 @@
-import time
-import progressbar
 
 
-def process_print(bust):
-    bar = progressbar.ProgressBar(widgets=None)
-    for i in bar(range(bust)):
-        time.sleep(1)
+def process_grid_print(p_name, arrival, bust, w_time):
+    print(p_name+"\t"+'|   '*(arrival)+"| # "*w_time+"| * "*bust)
 
-from tqdm import tnrange, tqdm_notebook
-from time import sleep
+def print_process_report(queue):
+    print('\n\nProcessName\tArrivalTime\tBurstTime')
+    for i in range(len(queue)):
+        print('\t', queue[i].index, '\t\t', queue[i].arrival, '\t\t', queue[i].burst)
 
-for i in tnrange(10, desc='1st loop'):
-    for j in tqdm_notebook(xrange(100), desc='2nd loop'):
-        sleep(0.01)
