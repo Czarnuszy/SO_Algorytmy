@@ -14,8 +14,7 @@ def printGrid(queue2):
     print('S \t', end='')
     m = len(queue2)
     x = queue2[m - 1].e_time
-    y = queue2[0].arrival
-    for i in range(y, x):
+    for i in range(1, x):
         if i < 10:
             print('| ' + str(i) + " ", end='')
         else:

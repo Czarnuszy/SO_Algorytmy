@@ -26,8 +26,7 @@ def calculate(process_queue):
 
     print('S \t', end='')
     x = process_queue[m - 1].e_time
-    y = process_queue[0].arrival
-    for i in range(y, x):
+    for i in range(1, x):
         if i < 10:
             print('| ' + str(i) + " ", end='')
         else:
