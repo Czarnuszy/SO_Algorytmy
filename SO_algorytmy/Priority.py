@@ -31,21 +31,8 @@ def printGrid(queue2):
             print('| ' + str(i) + " ", end='')
         else:
             print('| ' + str(i), end='')
+    print(" \n- -> Wait Time \n # -> Burst Time")
 
-def aging(process_queue):
-    queue2 = []
-    for i in range(len(process_queue)):
-        if process_queue[i].w_time >= 5:
-            process_queue[i].priority = 0
-    queue2.append(process_queue[0])
-    for i in range(1, len(process_queue)):
-        temp = []
-        for j in range(1, len(process_queue)):
-            if process_queue[j].arrival <= (queue2[i-1].burst+queue2[i-1].arrival):
-                temp.append(process_queue[j])
-        temp.sort(key=lambda temp: temp.priority, reverse=True)
-        queue2.append(temp[i-1])
-    return queue2
 
 
 def calculate(process_queue):
@@ -91,8 +78,7 @@ def start():
         queue2.append(temp[i-1])
     print("\nData input after sort:")
     printData(queue2)
-    print("Before process aging: ")
     calculate(queue2)
-    print("\n\nAfter process aging: ")
-    aging(queue2)
-    calculate(queue2)
+    # print("\n\nAfter process aging: ")
+    # aging(queue2)
+    # calculate(queue2)

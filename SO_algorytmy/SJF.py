@@ -30,6 +30,7 @@ def printGrid(queue2):
             print('| ' + str(i) + " ", end='')
         else:
             print('| ' + str(i), end='')
+    print("\n - -> Wait Time \n # -> Burst Time")
 
 def calculate(process_queue):
     start_time = 0
