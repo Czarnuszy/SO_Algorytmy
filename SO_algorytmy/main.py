@@ -1,6 +1,8 @@
 import sys, FCFS, SJF, Priority
 
 
+
+
 def menu():
     print("\nWhat algorithm you want to launch?")
     print('1. FCFS')

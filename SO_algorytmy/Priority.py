@@ -1,16 +1,28 @@
 #!/usr/bin/env python
 from ProcessClass import ReadData
-from operator import attrgetter
-import time
+from time import sleep
 
 def printData(queue):
-    print('\n\nProcessName\tArrivalTime\tBurstTime\tPriority')
+    file = open("Reports/Priority.txt", 'w')
+    print('\n\nProcessName\tArrivalTime\tBurstTime\tWaitTime\tPriority')
+    file.write('ProcessName\tArrivalTime\tBurstTime\tWaitTime\tPriority')
     for i in range(len(queue)):
-        print('\t', queue[i].index, '\t\t', queue[i].arrival, '\t\t', queue[i].burst, "\t\t\t", queue[i].priority)
+        file.write('\n' + "\t\t" + str(queue[i].index)
+                   + "\t\t" + str(queue[i].arrival)
+                   + "\t\t" + str(queue[i].burst)
+                   + "\t\t" +str(queue[i].w_time)
+                   + "\t\t" +str(queue[i].priority))
+        print('\t', queue[i].index,
+                  '\t\t', queue[i].arrival,
+                  '\t\t', queue[i].burst,
+                  "\t\t\t", str(queue[i].w_time),
+                   "\t\t\t", str(queue[i].priority))
+    file.close()
 
 def printGrid(queue2):
     for i in range(len(queue2)):
         queue2[i].print()
+        sleep(1)
     print('S \t', end='')
     m = len(queue2)
     x = queue2[m - 1].e_time
@@ -23,8 +35,8 @@ def printGrid(queue2):
 def aging(process_queue):
     queue2 = []
     for i in range(len(process_queue)):
-        if process_queue[i].w_time >= 10:
-            process_queue[i].priority = 1
+        if process_queue[i].w_time >= 5:
+            process_queue[i].priority = 0
     queue2.append(process_queue[0])
     for i in range(1, len(process_queue)):
         temp = []
@@ -50,9 +62,14 @@ def calculate(process_queue):
 
         process_queue[i].e_time = start_time + process_queue[i].burst
         start_time += process_queue[i].burst
+    printData(process_queue)
     printGrid(process_queue)
+    file = open("Reports/Priority.txt", 'a')
+    file.write('\nTotal wait time= ' + str(average_wait))
     print("\nTotal wait time= ", average_wait)
+    file.write("\n Average process wait time: " + str(float(average_wait / m)))
     print("Average process wait time: ", float(average_wait / m))
+    file.close()
 
 def start():
     print("\n-------------------------------")
@@ -78,5 +95,4 @@ def start():
     calculate(queue2)
     print("\n\nAfter process aging: ")
     aging(queue2)
-    printData(queue2)
     calculate(queue2)
